@@ -1,0 +1,62 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./src/",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "target": "es2017",
+    "module": "es2020",
+    "lib": [
+      "es2020",
+      "dom"
+    ],
+    "types": [
+      "cypress",
+      "@testing-library/cypress",
+    ],
+    "paths": {
+      "@environments/*": [
+        "./environments/*"
+      ],
+      "@components/*": [
+        "./app/components/*"
+      ],
+      "@models/*": [
+        "./app/models/*"
+      ],
+      "@services/*": [
+        "./app/services/*"
+      ],
+      "@pipes/*": [
+        "./app/pipes/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@mocks/*": [
+        "./app/mocks/*"
+      ],
+      "@stores/*": [
+        "./app/stores/*"
+      ]
+    }
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}

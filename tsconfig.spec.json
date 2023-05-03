@@ -1,0 +1,46 @@
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "outDir": "./out-tsc/spec",
+    "types": [
+      "jest",
+      "node"
+    ],
+    "paths": {
+      "@environments/*": [
+        "./environments/*"
+      ],
+      "@components/*": [
+        "./app/components/*"
+      ],
+      "@models/*": [
+        "./app/models/*"
+      ],
+      "@services/*": [
+        "./app/services/*"
+      ],
+      "@pipes/*": [
+        "./app/pipes/*"
+      ],
+      "@assets/*": [
+        "./assets/*"
+      ],
+      "@mocks/*": [
+        "./app/mocks/*"
+      ],
+      "@stores/*": [
+        "./app/stores/*"
+      ]
+    }
+  },
+  "files": [
+    "src/test.ts",
+    "src/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.spec.ts",
+    "src/**/*.d.ts"
+  ]
+}

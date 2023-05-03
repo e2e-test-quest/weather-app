@@ -1,0 +1,12 @@
+<div>
+    <div id="available-town-header" class="p-2">
+        <span class="h5 mb-0">Available Towns</span>
+    </div>
+    <ul class="list-group" aria-labelledby="available-town-header">
+        <li *ngFor="let townWeather of this.globalWeather"
+            (click)="onSelectTown(townWeather)"
+            class="btn list-group-item list-group-item-action {{ selectedTownWeather?.id && selectedTownWeather?.id === townWeather.id ? 'active': ''}}"
+            [attr.aria-label]="townWeather.name"
+        >{{townWeather.name}}</li>
+    </ul>
+</div>

@@ -1,0 +1,39 @@
+<div>
+    <div *ngIf="currentTownWeather; else noCurrentSelection"  [attr.aria-label]="'Weather of ' + currentTownWeather.name">
+        <h2 class="display-4" a>{{currentTownWeather.name}}</h2>
+        <hr>
+        <h3 class="display-5">Temperature</h3>
+        <div>
+            <span>min: </span>
+            <span>
+              <span class="text-primary">{{currentTownWeather.forecast.temperature.min?.value}} </span>
+              <span>{{currentTownWeather.forecast.temperature.min?.unit}}</span>
+            </span>
+        </div>
+        <div>
+            <span>max: </span>
+            <span class="text-primary">{{currentTownWeather.forecast.temperature.max?.value}} </span>
+            <span>{{currentTownWeather.forecast.temperature.max?.unit}}</span>
+        </div>
+        <div>
+          <span>range: </span>
+          <span class="text-primary">Not implemented yet !!! </span>
+        </div>
+        <hr>
+        <h3 class="display-5">Wind</h3>
+        <div>
+            <span>speed: </span>
+            <span class="text-primary">{{currentTownWeather.forecast.wind.speed.value}} </span>
+            <span>{{currentTownWeather.forecast.wind.speed.unit}}</span>
+        </div>
+        <div>
+            <span>direction: </span>
+            <span class="text-primary">{{currentTownWeather.forecast.wind.direction}} </span>
+        </div>
+    </div>
+    <ng-template #noCurrentSelection>
+        <div>
+            <p class="text-primary display-3">Nothing to display</p>
+        </div>
+    </ng-template>
+</div>
