@@ -1,6 +1,6 @@
 <div>
     <div *ngIf="currentTownWeather; else noCurrentSelection"  [attr.aria-label]="'Weather of ' + currentTownWeather.name">
-        <h2 class="display-4" a>{{currentTownWeather.name}}</h2>
+        <h2 class="display-4">{{currentTownWeather.name}}</h2>
         <hr>
         <h3 class="display-5">Temperature</h3>
         <div>
@@ -33,7 +33,7 @@
     </div>
     <ng-template #noCurrentSelection>
         <div>
-            <p class="text-primary display-3">Nothing to display</p>
+            <h2 class="text-primary display-3">Nothing to display</h2>
         </div>
     </ng-template>
 </div>
