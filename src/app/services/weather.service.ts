@@ -13,6 +13,6 @@ export class WeatherService {
   ) { }
 
   public getCurrentWeather(): Observable<Array<TownWeather>> {
-    return this.httpClient.get<Array<TownWeather>>('/assets/data/mock.json');
+    return this.httpClient.get<Array<TownWeather>>('./assets/data/mock.json');
   }
 }
