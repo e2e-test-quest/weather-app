@@ -1,10 +1,15 @@
 <main>
   <div class="container" *ngIf="(generalState$ | async) as generalState">
-    <h1 class="display-2" data-testid="app-title">Weather App</h1>
-    <img ngSrc="assets/images/weather.jpg" class="h-32px m-16px w-32px" alt="weather app" height="167" width="302">
-    <div *ngIf="!generalState.isStarted; else isStartedBlock" class="landing-view">
-      <button type="button" class="btn btn-primary col-auto" data-testid="start-button" (click)="onStart()">Get started</button>
-    </div>
+    <ng-container *ngIf="!generalState.isStarted; else isStartedBlock">
+      <h1 class="display-2" data-testid="app-title">Welcome to <span class="text-primary">Weather App</span></h1>
+      <img aria-hidden="true" ngSrc="assets/images/weather.jpg" class="h-32px m-16px w-32px" alt="weather illustration"
+           height="167" width="302">
+      <div class="landing-view">
+        <button type="button" class="btn btn-primary col-auto" data-testid="start-button" (click)="onStart()">Get
+          started
+        </button>
+      </div>
+    </ng-container>
     <ng-template #isStartedBlock>
       <div class="display-5 weather-tending">
         <span>Trending: </span>
@@ -26,12 +31,12 @@
             </div>
           </div>
         </form>
-        <div class="row justify-content-start">
-          <div class="col-3">
+        <div class="row justify-content-start gap-3 gap-md-0">
+          <div class="col-12 col-md-3">
             <app-town-selector [globalWeather]="globalWeather"
                                (selectedTownEvent)="selectedTown($event)"></app-town-selector>
           </div>
-          <div id="weather-details" class="col-9">
+          <div id="weather-details" class="col-12 col-md-9">
             <app-weather-details [currentTownWeather]="selectedTownWeather"></app-weather-details>
           </div>
         </div>

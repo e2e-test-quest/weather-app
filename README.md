@@ -66,20 +66,8 @@ npm install
     ```
    <br>
 
-### C - Tests Unitaires Cypress & Testing Library & Cucumber
-Cette partie s'appuie sur la librarie [Cypress - Testing Library - Cucumber](https://e2e-test-quest.github.io/uuv/)<br>
-En vous inspirant du fichier `e2e/smoke-test.feature`, effectuer les vérifications suivantes :
-1. **Homepage** : Vérifier que sur la page d'accueil, les éléments suivants sont visibles:
-   - un titre `Weather App`
-   - un bouton `Démarrer`
-
-2.**Weather** : Vérifier que depuis la page d'accueil, lorsqu'on clique sur `Démarrer`, les éléments suivants sont visibles:
-  - un texte `Nothing to display`
-  - La liste des villes dans le volet de gauche `[Douala, Tunis, Limoges]`
-
-3.**TownSelection** : Vérifier que depuis la page d'accueil, lorsqu'on clique sur `Démarrer`, puis qu'on sélectionne la ville `Douala`, les éléments suivants sont visibles dans la partie détail :
-- un titre `Douala`
-- un text `min: 10.8 °c`
+### C - Tests E2E avec UUV
+Voir [Kata E2E UUV](https://github.com/e2e-test-quest/kata-e2e-uuv/)
 
 ### D - Tests Store : NGXS Store
 ![NGXS Store](https://www.gitbook.com/cdn-cgi/image/width=40,height=40,fit=contain,dpr=1.25,format=auto/https%3A%2F%2F490253082-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-L9CoGJCq3UCfKJ7RCUg%252Favatar.png%3Fgeneration%3D1522797881064033%26alt%3Dmedia)
