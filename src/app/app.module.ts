@@ -11,13 +11,15 @@ import { HttpClientModule } from '@angular/common/http';
 import {NgxsModule} from "@ngxs/store";
 import {GeneralState} from "@stores/general/general.state";
 import {NgOptimizedImage} from "@angular/common";
+import { AddNewTownComponent } from './components/add-new-town/add-new-town.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     WeatherComponent,
     TownSelectorComponent,
-    WeatherDetailsComponent
+    WeatherDetailsComponent,
+    AddNewTownComponent
   ],
     imports: [
         BrowserModule,

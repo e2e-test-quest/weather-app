@@ -1,6 +1,7 @@
 import {Action, State, StateContext} from "@ngxs/store";
 import {Injectable} from "@angular/core";
-import {StartApplication} from "./general.action";
+import {Initialize, StartApplication} from "./general.action";
+import {Router} from "@angular/router";
 
 export interface GeneralStateModel {
   isStarted: boolean;
@@ -14,6 +15,8 @@ export interface GeneralStateModel {
 })
 @Injectable()
 export class GeneralState {
+  constructor(private router: Router) {
+  }
 
   @Action(StartApplication)
   starApplication(ctx: StateContext<GeneralStateModel>) {
@@ -21,6 +24,17 @@ export class GeneralState {
     ctx.setState({
       ...state,
       isStarted: true
+    });
+    this.router.navigate(
+      ['/'],
+      { queryParams: { isStarted: true } }
+    );
+  }
+
+  @Action(Initialize)
+  initialize(ctx: StateContext<GeneralStateModel>) {
+    ctx.setState({
+      isStarted: false
     });
   }
 }

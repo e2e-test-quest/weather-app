@@ -5,7 +5,8 @@ import { WeatherService } from '@services/weather.service';
 import {GeneralState, GeneralStateModel} from "@stores/general/general.state";
 import {Observable} from "rxjs";
 import {Select, Store} from "@ngxs/store";
-import {StartApplication} from "@stores/general/general.action";
+import {Initialize, StartApplication} from '@stores/general/general.action';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-weather',
@@ -21,14 +22,26 @@ export class WeatherComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private weatherService : WeatherService,
-    private store : Store
+    private store : Store,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      if(params['isStarted']) {
+        this.onStart();
+      } else {
+        this.initialize();
+      }
+    });
     this.townFilterForm = this.formBuilder.group({
       'townTextSearch' : new FormControl(null)
     });
     this.filteringTown(null);
+  }
+
+  public initialize() {
+    this.store.dispatch(new Initialize());
   }
 
   public onStart() {

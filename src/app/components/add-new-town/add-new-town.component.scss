@@ -1,0 +1,9 @@
+.new-town-form {
+  max-width: 1024px;
+}
+
+.required-field::after {
+  content: '*';
+  color: #e00000;
+  display: inline-block;
+}
