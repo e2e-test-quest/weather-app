@@ -38,7 +38,7 @@
     "@testing-library/jest-dom": "5.16.4",
     "@types/jest": "28.1.4",
     "@types/node": "12.11.1",
-    "@uuv/playwright": "^1.14.3",
+    "@uuv/playwright": "^1.15.0",
     "jest": "28.1.2",
     "jest-preset-angular": "12.1.0",
     "ts-loader": "9.4.2",

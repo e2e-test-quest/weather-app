@@ -54,18 +54,10 @@ Feature: First test
 
   Scenario: Add new town - Submit error
     When I visit path "/add-new-town"
-     And Within an text box named "Town name"
-     And I type the sentence "Paris"
-     And I reset context
-     And Within an spin button named "Latitude"
-     And I type the sentence "48,866667"
-     And I reset context
-     And Within an spin button named "Longitude"
-     And I type the sentence "2,333333"
-     And I reset context
-     And Within an text box named "Description"
-     And I type the sentence "Ville lumière"
-     And I reset context
+     And I type the sentence "Paris" in the text box named "Town name"
+     And I type the sentence "48,866667" in the spin button named "Latitude"
+     And I type the sentence "2,333333" in the spin button named "Longitude"
+     And I type the sentence "Ville lumière" in the text box named "Description"
      And I click on button named "Submit new town form"
     Then I should see an alert named "An error occurred please try again later"
 
@@ -73,18 +65,10 @@ Feature: First test
     Given I mock a request GET on url "/assets/data/mock.json" named "mock-new-town" with fixture mock-new-town.json
      And I mock a request POST on url "https://e2e-test-quest.github.io/weather-app/api" named "mock-post-new-town" with content "Success"
     When I visit path "/add-new-town"
-     And Within an text box named "Town name"
-     And I type the sentence "Paris"
-     And I reset context
-     And Within an spin button named "Latitude"
-     And I type the sentence "48,866667"
-     And I reset context
-     And Within an spin button named "Longitude"
-     And I type the sentence "2,333333"
-     And I reset context
-     And Within an text box named "Description"
-     And I type the sentence "Ville lumière"
-     And I reset context
+     And I type the sentence "Paris" in the text box named "Town name"
+     And I type the sentence "48,866667" in the spin button named "Latitude"
+     And I type the sentence "2,333333" in the spin button named "Longitude"
+     And I type the sentence "Ville lumière" in the text box named "Description"
      And I click on button named "Submit new town form"
     Then I should see elements of the list with name "Available Towns"
       | Douala  |

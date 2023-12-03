@@ -10,14 +10,14 @@ export default defineConfig({
   workers: 1,
   reporter: "@uuv/playwright/uuv-playwright-reporter",
   use: {
-    baseURL: "http://127.0.0.1:4200",
+    baseURL: "http://localhost:4200",
     trace: "on-first-retry",
     screenshot: "only-on-failure"
   },
   webServer: [
     {
       command: 'npm run start',
-      url: 'http://127.0.0.1:4200',
+      url: 'http://localhost:4200',
       timeout: 120 * 1000,
       reuseExistingServer: !process.env.CI
     }
