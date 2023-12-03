@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "jest --coverage",
     "test:watch": "jest --coverage --watch",
-    "uuv": "node node_modules/@uuv/cypress/dist/lib/uuv-cli.js"
+    "uuv": "node node_modules/@uuv/playwright/bin/uuv"
   },
   "private": true,
   "dependencies": {
@@ -21,7 +21,6 @@
     "@angular/platform-browser-dynamic": "14.2.12",
     "@angular/router": "14.2.12",
     "@ngxs/store": "3.7.6",
-    "@uuv/cypress": "1.4.2",
     "rxjs": "7.4.0",
     "tslib": "2.3.0",
     "yarn": "1.22.19",
@@ -39,7 +38,7 @@
     "@testing-library/jest-dom": "5.16.4",
     "@types/jest": "28.1.4",
     "@types/node": "12.11.1",
-    "cypress": "12.5.1",
+    "@uuv/playwright": "^1.14.3",
     "jest": "28.1.2",
     "jest-preset-angular": "12.1.0",
     "ts-loader": "9.4.2",
