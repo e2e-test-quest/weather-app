@@ -10,9 +10,10 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-
+  build-and-test:
     runs-on: ubuntu-latest
+    container:
+      image: cypress/browsers:node18.12.0-chrome107
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{env.NODE_VERSION}}
@@ -21,8 +22,10 @@ jobs:
           node-version: ${{env.NODE_VERSION}}
           cache: 'npm'
       - run: npm ci
-      - run: npm run build --if-present -- --base-href=/weather-app/
       - run: npm test
+      - run: npm start &
+      - run: npx uuv e2e --generateHtmlReport
+      - run: npm run build --if-present -- --base-href=/weather-app/
       - name: Upload build artifact
         uses: actions/upload-pages-artifact@main
         with:
