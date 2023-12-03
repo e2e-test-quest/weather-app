@@ -7,6 +7,7 @@ import { TownSelectorComponent } from '@components/town-selector/town-selector.c
 import { HttpClientModule } from '@angular/common/http';
 import {NgxsModule} from "@ngxs/store";
 import {GeneralState} from "@stores/general/general.state";
+import {RouterTestingModule} from "@angular/router/testing";
 
 describe('WeatherComponent', () => {
   let component: WeatherComponent;
@@ -25,7 +26,8 @@ describe('WeatherComponent', () => {
         HttpClientModule,
         NgxsModule.forRoot([
           GeneralState
-        ])
+        ]),
+        RouterTestingModule
       ]
     })
     .compileComponents();
