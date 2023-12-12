@@ -21,17 +21,17 @@ Feature: First test
 
   Scenario: TownSelection - Douala
     Given I visit path "/?isStarted=true"
-    When Within a list named "Available Towns"
+    When within a list named "Available Towns"
     And I click on element with role "listitem" and name "Douala"
     # Check the weather details for Douala town
-    Then Within the element with aria-label "Weather of Douala"
+    Then within the element with aria-label "Weather of Douala"
     And I should see a title named "Douala"
     And I should see an element with content "min: 10.8 °c"
 
   Scenario: TownResearch - Filter
     Given I visit path "/?isStarted=true"
     # Click on <Get started> button
-    When Within an text box named "Search for a town"
+    When within a text box named "Search for a town"
     And I type the sentence "i"
     And I reset context
     # Click on <Filter> button
@@ -47,7 +47,7 @@ Feature: First test
      And I should see an alert named "Warning: Fields marked with an * are required"
      And I should see a text box named "Town name"
      And I should see a spin button named "Latitude"
-     And I should see an spin button named "Longitude"
+     And I should see a spin button named "Longitude"
      And I should see a text box named "Description"
      And I should see a button named "Submit new town form" and containing "Submit"
      And I should see a button named "Back to town list" and containing "Back"
