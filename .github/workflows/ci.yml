@@ -15,9 +15,9 @@ jobs:
     container:
       image: cypress/browsers:node18.12.0-chrome107
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Use Node.js ${{env.NODE_VERSION}}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{env.NODE_VERSION}}
           cache: 'npm'
@@ -44,4 +44,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
