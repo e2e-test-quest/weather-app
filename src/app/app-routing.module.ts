@@ -5,10 +5,12 @@ import {AddNewTownComponent} from '@components/add-new-town/add-new-town.compone
 
 const routes: Routes = [
   {
+    title: 'home',
     path: '',
     component: WeatherComponent
   },
   {
+    title: 'add-new-town',
     path: 'add-new-town',
     component: AddNewTownComponent
   }
