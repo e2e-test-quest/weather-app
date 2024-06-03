@@ -28,7 +28,7 @@ jobs:
       - name: E2E Tests
         run: npx uuv e2e --generateHtmlReport --generateJunitReport || cat ./uuv/reports/e2e/junit-report.xml
       - name: Test Report
-        uses: dorny/test-reporter@v1.9.0
+        uses: dorny/test-reporter@v1.9.1
         if: success() || failure()
         with:
           name: Report - E2E Tests - Playwright
