@@ -1,7 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
+import { buildConfig } from "@uuv/playwright";
 
 export default defineConfig({
-  testDir: ".uuv-features-gen",
+  testDir: buildConfig(
+    ["e2e/*.feature"]
+  ),
   testMatch: ["**/*.spec.ts", "**/*.{ts,js}"],
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
@@ -10,18 +13,11 @@ export default defineConfig({
   workers: 1,
   reporter: "@uuv/playwright/uuv-playwright-reporter",
   use: {
-    baseURL: "http://localhost:4200",
+    baseURL: process.env.UUV_BASE_URL ? process.env.UUV_BASE_URL : "http://localhost:4200",
     trace: "on-first-retry",
     screenshot: "only-on-failure"
   },
-  webServer: [
-    {
-      command: 'npm run start',
-      url: 'http://localhost:4200',
-      timeout: 120 * 1000,
-      reuseExistingServer: !process.env.CI
-    }
-  ],
+
   projects: [
     {
       name: "chromium",
