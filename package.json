@@ -29,7 +29,7 @@
   "devDependencies": {
     "@angular-builders/jest": "17.0.4-beta.3",
     "@angular-devkit/build-angular": "^17.3.8",
-    "@angular/cli": "^17.3.8",
+    "@angular/cli": "^18.0.0",
     "@angular/compiler-cli": "17.3.10",
     "@testing-library/angular": "11.0.4",
     "@testing-library/jest-dom": "5.16.4",
