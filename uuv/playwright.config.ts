@@ -17,7 +17,14 @@ export default defineConfig({
     trace: "on-first-retry",
     screenshot: "only-on-failure"
   },
-
+  webServer: [
+    {
+      command: 'npm run start',
+      url: 'http://localhost:4200',
+      timeout: 120 * 1000,
+      reuseExistingServer: !process.env.CI
+    }
+  ],
   projects: [
     {
       name: "chromium",
@@ -46,11 +53,11 @@ export default defineConfig({
 
     /* Test against branded browsers. */
     {
-      name: "Microsoft Edge",
+      name: "edge",
       use: { ...devices["Desktop Edge"], channel: "msedge" },
     },
     {
-      name: "Google Chrome",
+      name: "chrome",
       use: { ...devices["Desktop Chrome"], channel: "chrome" },
     },
   ],
