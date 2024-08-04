@@ -1,19 +1,19 @@
 Feature: First test
 
   Scenario: Homepage
-    When I visit path "https://e2e-test-quest.github.io/weather-app/"
+    When I visit path "http://localhost:4200"
     Then I should see a title named "Welcome to Weather App"
     And I should see a button named "Get started"
 
   Scenario: Weather - "Nothing to display" must be displayed
-    When I visit path "https://e2e-test-quest.github.io/weather-app/"
+    When I visit path "http://localhost:4200"
     # Click on <Get started> button
     And I click on button named "Get started"
     # Check that there's nothing to display because there is no town selected.
     Then I should see a title named "Nothing to display"
 
   Scenario: Weather - Town List must be ok
-    When I visit path "https://e2e-test-quest.github.io/weather-app/"
+    When I visit path "http://localhost:4200"
     # Click on <Get started> button
     And I click on button named "Get started"
     # Checks the list of available towns.
@@ -23,7 +23,7 @@ Feature: First test
       | Limoges |
 
   Scenario: TownSelection - Douala
-    When I visit path "https://e2e-test-quest.github.io/weather-app/?isStarted=true"
+    When I visit path "http://localhost:4200?isStarted=true"
     # Select Douala town
     And within a list named "Available Towns"
     And I click on element with role "listitem" and name "Douala"
@@ -33,7 +33,7 @@ Feature: First test
     And I should see an element with content "min: 10.8 °c"
 
   Scenario: TownResearch - Filter
-    When I visit path "https://e2e-test-quest.github.io/weather-app/?isStarted=true"
+    When I visit path "http://localhost:4200?isStarted=true"
     # Type sentence "i" on input field
     And I type the sentence "i" in the text box named "Search for a town"
     # Simulate human latency
