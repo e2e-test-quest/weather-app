@@ -42,6 +42,25 @@
         <label class="form-check-label" for="new-town-description">Description</label>
         <textarea formControlName="description" class="form-control" id="new-town-description"></textarea>
       </div>
+      <fieldset class="col-12 row mt-2">
+        <legend class="required-field">Population</legend>
+        <div class="col-md-4">
+          <input type="radio" id="small" name="population" value="small" checked />
+          <label for="small">Small (under 150000)</label>
+        </div>      
+        <div class="col-md-4">
+          <input type="radio" id="medium" name="population" value="medium" />
+          <label for="medium">Medium (150000 to 1 million)</label>
+        </div>
+        <div class="col-md-4">
+          <input type="radio" id="large" name="population" value="large" />
+          <label for="large">Large (over 1 million)</label>
+        </div>
+      </fieldset>
+      <div class="col-12">
+        <input type="checkbox" id="allow-automatique-update" name="allow-automatique-update" />
+        <label class="form-check-label ml-5" for="allow-automatique-update">Allow automatic update</label>
+      </div>
       <div class="col-12" class="d-flex flex-row justify-content center gap-5">
         <button class="btn btn-outline-danger d-flex align-items-center gap-1" type="button" aria-label="Back to town list" routerLink="/" [queryParams]="{'isStarted': true}"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16" aria-hidden="true">
           <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
