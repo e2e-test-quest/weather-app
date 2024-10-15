@@ -22,7 +22,7 @@
     "@angular/router": "17.3.10",
     "@ngxs/store": "3.8.2",
     "rxjs": "7.4.0",
-    "tslib": "2.3.0",
+    "tslib": "2.8.0",
     "yarn": "1.22.22",
     "zone.js": "0.14.6"
   },
