@@ -1,35 +1,28 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./src/",
+    "baseUrl": "./src",
     "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "importHelpers": true,
-    "esModuleInterop": true,
     "target": "ES2022",
-    "module": "es2020",
+    "module": "ES2022",
     "lib": [
-      "es2020",
+      "ES2022",
       "dom"
     ],
-    "types": [
-      "cypress",
-      "@testing-library/cypress"
-    ],
     "paths": {
-      "@environments/*": [
-        "./environments/*"
-      ],
       "@components/*": [
         "./app/components/*"
       ],
@@ -42,17 +35,13 @@
       "@pipes/*": [
         "./app/pipes/*"
       ],
-      "@assets/*": [
-        "./assets/*"
-      ],
-      "@mocks/*": [
-        "./app/mocks/*"
+      "@pages/*": [
+        "./app/pages/*"
       ],
       "@stores/*": [
         "./app/stores/*"
       ]
-    },
-    "useDefineForClassFields": false
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

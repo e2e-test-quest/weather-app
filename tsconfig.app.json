@@ -1,40 +1,13 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
+/* To learn more about Typescript configuration file: https://www.typescriptlang.org/docs/handbook/tsconfig-json.html. */
+/* To learn more about Angular compiler options: https://angular.dev/reference/configs/angular-compiler-options. */
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./src",
     "outDir": "./out-tsc/app",
-    "types": [],
-    "paths": {
-      "@environments/*": [
-        "./environments/*"
-      ],
-      "@components/*": [
-        "./app/components/*"
-      ],
-      "@models/*": [
-        "./app/models/*"
-      ],
-      "@services/*": [
-        "./app/services/*"
-      ],
-      "@pipes/*": [
-        "./app/pipes/*"
-      ],
-      "@assets/*": [
-        "./assets/*"
-      ],
-      "@mocks/*": [
-        "./app/mocks/*"
-      ],
-      "@stores/*": [
-        "./app/stores/*"
-      ]
-    }
+    "types": []
   },
   "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
+    "src/main.ts"
   ],
   "include": [
     "src/**/*.d.ts"

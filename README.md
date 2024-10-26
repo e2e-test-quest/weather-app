@@ -4,11 +4,6 @@ Cette application a pour objectif de servir de Bac à sable pour exercice, kata 
 
 ## Installation
 ```shell
-yarn install
-```
-ou
-
-```shell
 npm install
 ```
 

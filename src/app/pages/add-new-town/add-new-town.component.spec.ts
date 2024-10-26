@@ -1,10 +1,9 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import {AddNewTownComponent} from './add-new-town.component';
-import {provideHttpClientTesting} from "@angular/common/http/testing";
+import { AddNewTownComponent } from './add-new-town.component';
 import {provideRouter} from '@angular/router';
 import {provideHttpClient} from '@angular/common/http';
-import {ReactiveFormsModule} from '@angular/forms';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 
 describe('AddNewTownComponent', () => {
   let component: AddNewTownComponent;
@@ -12,12 +11,11 @@ describe('AddNewTownComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ AddNewTownComponent ],
+      imports: [AddNewTownComponent],
       providers: [
         provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),
-        ReactiveFormsModule
       ]
     })
     .compileComponents();

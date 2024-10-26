@@ -1,26 +1,25 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TownWeather } from '@models/town-weather';
+import {Component, EventEmitter, Input, Output, signal, WritableSignal} from '@angular/core';
+import {TownWeather} from '@models/town-weather';
+import {RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-town-selector',
+  standalone: true,
+  imports: [
+    RouterLink
+  ],
   templateUrl: './town-selector.component.html',
-  styleUrls: ['./town-selector.component.scss']
+  styleUrl: './town-selector.component.scss'
 })
-export class TownSelectorComponent implements OnInit {
-  @Input()
+export class TownSelectorComponent {
+  @Input({required: true})
   public globalWeather !: Array<TownWeather>;
-  public selectedTownWeather ?: TownWeather;
+  public selectedTownWeather : WritableSignal<TownWeather | null> = signal(null);
   @Output()
   public selectedTownEvent = new EventEmitter<TownWeather>();
 
-  constructor(
-  ) { }
-
-  ngOnInit(): void {
-  }
-
-  public onSelectTown(newSeletedTownWeather: TownWeather) {
-    this.selectedTownWeather = newSeletedTownWeather;
-    this.selectedTownEvent.emit(this.selectedTownWeather);
+  public onSelectTown(newSelectedTownWeather: TownWeather) {
+    this.selectedTownWeather.set(newSelectedTownWeather);
+    this.selectedTownEvent.emit(newSelectedTownWeather);
   }
 }

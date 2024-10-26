@@ -1,15 +1,18 @@
 <div>
-    <div id="available-town-header" class="p-2">
-        <span class="h5 mb-0">Available Towns</span>
-    </div>
-    <ul class="list-group" aria-labelledby="available-town-header" data-testid="available-towns">
-        <li *ngFor="let townWeather of this.globalWeather"
-            (click)="onSelectTown(townWeather)"
-            class="btn list-group-item list-group-item-action {{ selectedTownWeather?.id && selectedTownWeather?.id === townWeather.id ? 'active': ''}}"
-            [attr.aria-label]="townWeather.name"
-            [attr.data-testid]="'town-' + townWeather.name"
-        >{{townWeather.name}}</li>
-    </ul>
+  <div id="available-town-header" class="p-2">
+    <span class="h5 mb-0">Available Towns</span>
+  </div>
+  <ul class="list-group" aria-labelledby="available-town-header" data-testid="available-towns">
+    @for (townWeather of this.globalWeather; track townWeather.id) {
+      <li class="btn list-group-item list-group-item-action {{ selectedTownWeather()?.id && selectedTownWeather()?.id === townWeather.id ? 'active': ''}}"
+          (click)="onSelectTown(townWeather)"
+          [attr.data-testid]="'town-' + townWeather.name"
+          [attr.aria-label]="townWeather.name"
+      >{{ townWeather.name }}</li>
+    } @empty {
+      <p class="text-center ">No town available</p>
+    }
+  </ul>
   <div class="d-flex justify-content-center mt-2">
     <button class="btn btn-primary d-flex align-items-center gap-1" routerLink="/add-new-town">
       <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle"

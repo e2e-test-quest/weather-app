@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { WeatherDetailsComponent } from './weather-details.component';
+import {provideRouter} from '@angular/router';
+import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
 
 describe('WeatherDetailsComponent', () => {
   let component: WeatherDetailsComponent;
@@ -8,12 +11,15 @@ describe('WeatherDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ WeatherDetailsComponent ]
+      imports: [WeatherDetailsComponent],
+      providers: [
+        provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(WeatherDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

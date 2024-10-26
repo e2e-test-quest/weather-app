@@ -1,18 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { TownWeather } from '@models/town-weather';
+import {Component, Input} from '@angular/core';
+import {TownWeather} from '@models/town-weather';
 
 @Component({
   selector: 'app-weather-details',
+  standalone: true,
+  imports: [],
   templateUrl: './weather-details.component.html',
-  styleUrls: ['./weather-details.component.scss']
+  styleUrl: './weather-details.component.scss'
 })
-export class WeatherDetailsComponent implements OnInit {
-  @Input()
+export class WeatherDetailsComponent {
+  @Input({required: true})
   public currentTownWeather !: TownWeather | null;
-  
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

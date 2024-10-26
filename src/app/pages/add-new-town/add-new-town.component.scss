@@ -1,0 +1,9 @@
+.required-field::after {
+  content: '*';
+  color: #e00000;
+  display: inline-block;
+}
+
+legend {
+  font-size: var(--bs-body-font-size);
+}

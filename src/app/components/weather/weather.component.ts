@@ -1,60 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { TownWeather } from '@models/town-weather';
+import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {TownSelectorComponent} from '../town-selector/town-selector.component';
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {TownWeather} from '@models/town-weather';
 import { WeatherService } from '@services/weather.service';
-import {GeneralState, GeneralStateModel} from "@stores/general/general.state";
-import {Observable} from "rxjs";
-import {Select, Store} from "@ngxs/store";
-import {Initialize, StartApplication} from '@stores/general/general.action';
-import {ActivatedRoute} from '@angular/router';
+import {WeatherDetailsComponent} from '@components/weather-details/weather-details.component';
 
 @Component({
   selector: 'app-weather',
+  standalone: true,
+  imports: [
+    TownSelectorComponent,
+    WeatherDetailsComponent,
+    ReactiveFormsModule
+  ],
   templateUrl: './weather.component.html',
-  styleUrls: ['./weather.component.scss']
+  styleUrl: './weather.component.scss'
 })
 export class WeatherComponent implements OnInit {
-  public selectedTownWeather !: TownWeather | null;
+  public selectedTownWeather : WritableSignal<TownWeather | null> = signal(null);
   public townFilterForm !: FormGroup;
   public globalWeather !: Array<TownWeather>;
-  @Select(GeneralState) generalState$ !: Observable<GeneralStateModel>;
+  private weatherService = inject(WeatherService);
+  private formBuilder = inject(FormBuilder);
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private weatherService : WeatherService,
-    private store : Store,
-    private route: ActivatedRoute
-  ) { }
-
-  ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
-      if(params['isStarted']) {
-        this.onStart();
-      } else {
-        this.initialize();
-      }
-    });
+  constructor() {
     this.townFilterForm = this.formBuilder.group({
       'townTextSearch' : new FormControl(null)
     });
+  }
+
+  ngOnInit(): void {
     this.filteringTown(null);
   }
 
-  public initialize() {
-    this.store.dispatch(new Initialize());
-  }
-
-  public onStart() {
-    this.store.dispatch(new StartApplication());
-  }
-
   public selectedTown($selectedTownWeather: TownWeather) {
-    this.selectedTownWeather = $selectedTownWeather;
+    this.selectedTownWeather.set($selectedTownWeather);
   }
 
   public onSubmitForm() {
     const SEARCH_FIELD_FORM_ID = 'townTextSearch';
-    this.selectedTownWeather = null;
+    this.selectedTownWeather.set(null);
     if (this.townFilterForm.valid && this.townFilterForm.get(SEARCH_FIELD_FORM_ID)) {
       const townFilterValue = this.townFilterForm.get(SEARCH_FIELD_FORM_ID)?.value;
       this.filteringTown(townFilterValue);

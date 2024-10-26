@@ -1,13 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { WeatherComponent } from './weather.component';
-import { WeatherDetailsComponent } from '@components/weather-details/weather-details.component';
-import { TownSelectorComponent } from '@components/town-selector/town-selector.component';
-import { HttpClientModule } from '@angular/common/http';
-import {NgxsModule} from "@ngxs/store";
-import {GeneralState} from "@stores/general/general.state";
-import {RouterTestingModule} from "@angular/router/testing";
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {WeatherComponent} from './weather.component';
+import {HttpClient, provideHttpClient} from '@angular/common/http';
+import {provideHttpClientTesting} from '@angular/common/http/testing';
+import {provideRouter} from '@angular/router';
 
 describe('WeatherComponent', () => {
   let component: WeatherComponent;
@@ -15,25 +10,18 @@ describe('WeatherComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        WeatherComponent,
-        WeatherDetailsComponent,
-        TownSelectorComponent
-      ],
       imports: [
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        NgxsModule.forRoot([
-          GeneralState
-        ]),
-        RouterTestingModule
+        WeatherComponent,
+      ],
+      providers: [
+        provideRouter([]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
       ]
     })
     .compileComponents();
-  });
 
-  beforeEach(() => {
+    TestBed.inject(HttpClient);
     fixture = TestBed.createComponent(WeatherComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

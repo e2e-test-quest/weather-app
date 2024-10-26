@@ -1,45 +1,31 @@
-<main>
-  <div class="container" *ngIf="(generalState$ | async) as generalState">
-    <ng-container *ngIf="!generalState.isStarted; else isStartedBlock">
-      <h1 class="display-2" data-testid="app-title">Welcome to <span class="text-primary">Weather App</span></h1>
-      <img aria-hidden="true" ngSrc="assets/images/weather.jpg" class="h-32px m-16px w-32px" alt="weather illustration"
-           height="167" width="302">
-      <div class="landing-view">
-        <button type="button" class="btn btn-primary col-auto" data-testid="start-button" (click)="onStart()">Get started</button>
+<h1 class="display-2" data-testid="app-title">Current Weather</h1>
+<div class="display-5 weather-tending">
+  <span>Trending: </span>
+  <span class="text-primary">Not implemented yet !!! </span>
+</div>
+<div class="weather-view">
+  <p class="mb-2">First select a town or use the filter before</p>
+  <form class="mb-2" [formGroup]="townFilterForm" (ngSubmit)="onSubmitForm()">
+    <div class="row">
+      <div class="col-auto">
+        <input title="Search for a town" id="townTextSearch" formControlName="townTextSearch" type="text" class="form-control col-auto"
+               name="townTextSearch" data-testid="town-search">
+        <div class="invalid-feedback">Required field</div>
       </div>
-    </ng-container>
-    <ng-template #isStartedBlock>
-      <h1 class="display-2" data-testid="app-title">Current Weather</h1>
-      <div class="display-5 weather-tending">
-        <span>Trending: </span>
-        <span class="text-primary">Not implemented yet !!! </span>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-secondary col-auto" data-testid="town-filter">
+          Filter
+        </button>
       </div>
-      <div class="weather-view">
-        <p class="mb-2">First select a town or use the filter before</p>
-        <form class="mb-2" [formGroup]="townFilterForm" (ngSubmit)="onSubmitForm()">
-          <div class="row">
-            <div class="col-auto">
-              <input title="Search for a town" id="townTextSearch" formControlName="townTextSearch" type="text" class="form-control col-auto"
-                     name="townTextSearch" data-testid="town-search">
-              <div class="invalid-feedback">Required field</div>
-            </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-secondary col-auto" data-testid="town-filter">
-                Filter
-              </button>
-            </div>
-          </div>
-        </form>
-        <div class="row justify-content-start gap-3 gap-md-0">
-          <div class="col-12 col-md-3">
-            <app-town-selector [globalWeather]="globalWeather"
-                               (selectedTownEvent)="selectedTown($event)"></app-town-selector>
-          </div>
-          <div id="weather-details" class="col-12 col-md-9">
-            <app-weather-details [currentTownWeather]="selectedTownWeather"></app-weather-details>
-          </div>
-        </div>
-      </div>
-    </ng-template>
+    </div>
+  </form>
+  <div class="row justify-content-start gap-3 gap-md-0">
+    <div class="col-12 col-md-3">
+      <app-town-selector [globalWeather]="globalWeather"
+                         (selectedTownEvent)="selectedTown($event)"></app-town-selector>
+    </div>
+    <div id="weather-details" class="col-12 col-md-9 p-4 border border-2 border-black">
+      <app-weather-details [currentTownWeather]="selectedTownWeather()"></app-weather-details>
+    </div>
   </div>
-</main>
+</div>
