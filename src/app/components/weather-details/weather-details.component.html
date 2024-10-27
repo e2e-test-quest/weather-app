@@ -18,7 +18,9 @@
       </div>
       <div>
         <span>range: </span>
-        <span class="text-primary">Not implemented yet !!! </span>
+        @if (currentTownWeather) {
+          <span class="text-primary">{{ currentTownWeather.temperatureRange() }} </span><span>{{currentTownWeather.forecast.temperature.max?.unit}}</span>
+        }
       </div>
       <hr>
       <h3 class="display-5">Wind</h3>
