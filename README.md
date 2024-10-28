@@ -11,7 +11,8 @@ npm install
 
 ### A - Tests Unitaires Objets & Services
 1. **Tests Unitaires Objet**<br>
-   Rajouter à la classe `TownWeather` la methode `temperatureRange()` pour calculer l'amplitude de température (en degrés) avec test unitaire et afficher le champ dans la page de détails
+   Rajouter à la classe `TownWeather` la methode `temperatureRange()` pour calculer l'amplitude de température (en degrés) avec test unitaire et afficher le champ dans la page de détails<br>
+   [Voir la solution](https://github.com/e2e-test-quest/weather-app/commit/8ffeab179513ed440bcd8c8e10dd423f67fb0e3f)
 2. **Tests Unitaires Service**<br>
    Crée le service `TrendingService` : Selection d'une ville random pour construction du lien d'actualité (texte + url)
    1. Créer le model `Trending` contenant les champs `label` & `url`
@@ -23,13 +24,16 @@ npm install
            "url" : "https://www.google.com/search?q=<nom_ville>"
          }
       ```
-   4. Afficher le résultat du trending le dans le template  `weather.component.html`
+   4. Afficher le résultat du trending le dans le template  `weather.component.html`<br>
+   [Voir la solution](https://github.com/e2e-test-quest/weather-app/commit/40fa66cd1da8d4fba446ed364485f75b3420b05b)
 
 ### B - Tests Unitaires Components (DOM & Observables)
 1. **Test du dom avec `TestingLibrary`** : [Documentation](https://testing-library.com/docs/)<br>
    Rajouter de nouveaux cas de test dans le fichier `src/app/components/town-selector/town-selector.component.spec.ts` pour :
-   1. Vérifier avec la méthode `const listOfTownsContainer = screen.getByRole('list', ...)` que la page html contient une liste nommée `Available Towns`
-   2. Vérifier avec la méthode `getAllByRole(listOfTownsContainer, 'listitem')` que la liste des villes restituées est conforme au paramètre `globalWeather` du composant (penser à bien initialiser cette attribut dans le test) 
+   1. Vérifier avec la méthode `const listOfTownsContainer = screen.getByRole('list', ...)` que la page html contient une liste nommée `Available Towns`<br>
+   [Voir la solution](https://github.com/e2e-test-quest/weather-app/commit/dfcb8465d4a24b9e56736877664fdb266570e248)
+   2. Vérifier avec la méthode `getAllByRole(listOfTownsContainer, 'listitem')` que la liste des villes restituées est conforme au paramètre `globalWeather` du composant (penser à bien initialiser cette attribut dans le test)<br>
+   [Voir la solution](https://github.com/e2e-test-quest/weather-app/commit/6b0cbf04468de4f6a972611d82cb1f711beae941)
    <br>
    <br>
 2. **Mock d'un observable** : Le but est de vérifier la bonne initialisation du composant `WeatherComponent` en mockant la méthode `weatherService.getCurrentWeather()`.<br>
@@ -62,6 +66,7 @@ npm install
         ...
     });
     ```
+   [Voir la solution](https://github.com/e2e-test-quest/weather-app/commit/5734f7fb5df8223a638220535baa9de1b3a88260)
    <br>
 
 ### C - Tests E2E avec UUV
@@ -78,4 +83,5 @@ L'objectif ici est de faire porter le mécanisme de sélection d'une ville par l
    2. Déclarer l'action de selection d'une ville `selectTown` dans le fichier `weather.action.ts`
    3. Implémenter l'action dans le fichier `weather.state.ts`
    4. Rajouter les tests unitaires pour l'action `WeatherState.selectTown` dans le fichier `weather.state.spec.ts` et les modifications nécessaires pour que tous les tests unitaires s'exécutent sans erreur
-   5. Mettre à jour la configuration `app.config.ts` et les composants `weather` et `town-selector` pour utiliser le selecteur `WeatherState.getSelectedTownWeather` et l'action `WeatherState.selectTown`.
+   5. Mettre à jour la configuration `app.config.ts` et les composants `weather` et `town-selector` pour utiliser le selecteur `WeatherState.getSelectedTownWeather` et l'action `WeatherState.selectTown`.<br>
+[Voir la solution](https://github.com/e2e-test-quest/weather-app/commit/eafa53db211ebc4a805126f96a74a4ffa0a00657)
