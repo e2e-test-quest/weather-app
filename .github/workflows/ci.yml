@@ -39,7 +39,7 @@ jobs:
         uses: actions/upload-pages-artifact@main
         with:
          name: github-pages
-         path: dist/weather-app
+         path: dist/weather-app/browser
 
   publish:
     if: github.ref == 'refs/heads/main'
