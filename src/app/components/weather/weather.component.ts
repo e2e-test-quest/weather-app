@@ -37,7 +37,7 @@ export class WeatherComponent implements OnInit {
       'townTextSearch' : new FormControl(null)
     });
     this.globalWeather$ = this.weatherService.getCurrentWeather();
-    this.globalWeather = toSignal(this.globalWeather$);
+    this.globalWeather = toSignal(this.globalWeather$, {rejectErrors: true, initialValue: []});
   }
 
   ngOnInit(): void {

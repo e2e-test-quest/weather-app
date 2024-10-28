@@ -26,14 +26,14 @@ npm install
    4. Afficher le résultat du trending le dans le template  `weather.component.html`
 
 ### B - Tests Unitaires Components (DOM & Observables)
-1. **Test du dom avec `TestingLibrary`** : ![Documentation](https://testing-library.com/docs/).
-   1. Rajouter un nouveau cas de test dans le fichier `src/app/components/town-selector/town-selector.component.spec.ts`
-   2. Vérifier avec la méthode `const listOfTownsContainer = screen.getByRole('list')` que le dom contient bien un élément de type list
-   3. Vérifier avec la méthode `screen.getAllByRole('listitem', listOfTownsContainer)` la liste des villes restituée est conforme au paramètre `globalWeather` du composant (penser à bien initialiser cette attribut dans le test) 
+1. **Test du dom avec `TestingLibrary`** : [Documentation](https://testing-library.com/docs/)<br>
+   Rajouter de nouveaux cas de test dans le fichier `src/app/components/town-selector/town-selector.component.spec.ts` pour :
+   1. Vérifier avec la méthode `const listOfTownsContainer = screen.getByRole('list', ...)` que la page html contient une liste nommée `Available Towns`
+   2. Vérifier avec la méthode `getAllByRole(listOfTownsContainer, 'listitem')` que la liste des villes restituées est conforme au paramètre `globalWeather` du composant (penser à bien initialiser cette attribut dans le test) 
    <br>
    <br>
-2. **Mock d'un observable** : Le but est de tester la méthode `WeatherComponent.filteringTown()` en mockant la méthode `weatherService.getCurrentWeather()`.<br>
-    Ecrire des tests unitaires pour la méthode `WeatherComponent.filteringTown()` en prennant soin de gérer les différents cas possibles.</br>
+2. **Mock d'un observable** : Le but est de vérifier la bonne initialisation du composant `WeatherComponent` en mockant la méthode `weatherService.getCurrentWeather()`.<br>
+    Ecrire des tests unitaires vérifiant la valeur du signal `WeatherComponent.availableTownWeather` en prennant soin de gérer les différents cas possibles.</br>
     **Exemple de mock** :
     ``` javascript
     it('<nom du test à changer>', () => {
@@ -43,17 +43,20 @@ npm install
           of(MOCK_TONWS_WEATHER)
         );
    
+        const weatherService = TestBed.inject(WeatherService);
         // Remplacement de la vraie méthode par le mock
-        component['weatherService']['getCurrentWeather'] = getCurrentWeatherMock;
-        
-        // Déclenche la détection des changements pour appliquer ces changements au component 
-        fixture.detectChanges();    
-      
-        // Exécution de la méthode à tester
-        component['filteringTown'](null);
+        weatherService['getCurrentWeather'] = getCurrentWeatherMock;
    
+        // Initialisation du composant
+        fixture = TestBed.createComponent(WeatherComponent);
+        component = fixture.componentInstance;
+   
+        // Déclenche la détection des changements pour appliquer ces changements au component 
+        fixture.detectChanges();
+        
+        expect(component).toBeTruthy();
         // Vérification de l'appel au mock
-        expect(getCurrentWeatherMock).toHaveBeenCalledTimes(1)
+        expect(getCurrentWeatherMock).toHaveBeenCalledTimes(1);
    
         // Autres vérifications
         ...
