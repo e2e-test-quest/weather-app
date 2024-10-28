@@ -20,6 +20,6 @@ export class TownSelectorComponent {
 
   public onSelectTown(newSelectedTownWeather: TownWeather) {
     this.selectedTownWeather.set(newSelectedTownWeather);
-    this.selectedTownEvent.emit(newSelectedTownWeather);
+    this.selectedTownEvent.emit(Object.assign(new TownWeather(), newSelectedTownWeather));
   }
 }
