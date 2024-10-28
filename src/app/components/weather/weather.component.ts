@@ -7,6 +7,9 @@ import {WeatherDetailsComponent} from '@components/weather-details/weather-detai
 import {AsyncPipe} from '@angular/common';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {Observable} from 'rxjs';
+import {Store} from '@ngxs/store';
+import {WeatherState} from '@stores/weather/weather.state';
+import {SelectTown} from '@stores/weather/weather.actions';
 
 const SEARCH_FIELD_FORM_ID = 'townTextSearch';
 
@@ -23,7 +26,8 @@ const SEARCH_FIELD_FORM_ID = 'townTextSearch';
   styleUrl: './weather.component.scss'
 })
 export class WeatherComponent implements OnInit {
-  public selectedTownWeather : WritableSignal<TownWeather | null> = signal(null);
+  private store = inject(Store);
+  public selectedTownWeather : Signal<TownWeather | null> = this.store.selectSignal(WeatherState.getSelectedTownWeather);
   public globalWeather!: Signal<TownWeather[] | undefined>;
   public townFilter: WritableSignal<string | null> = signal(null);
   public availableTownWeather!: Signal<TownWeather[] | undefined>;
@@ -58,12 +62,8 @@ export class WeatherComponent implements OnInit {
 
   }
 
-  public selectedTown($selectedTownWeather: TownWeather) {
-    this.selectedTownWeather.set($selectedTownWeather);
-  }
-
   public onSubmitForm() {
-    this.selectedTownWeather.set(null);
+    this.store.dispatch(new SelectTown(null));
     if (this.townFilterForm.valid && this.townFilterForm.get(SEARCH_FIELD_FORM_ID)) {
       this.townFilter.set(this.townFilterForm.get(SEARCH_FIELD_FORM_ID)?.value);
     }

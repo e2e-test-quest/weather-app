@@ -4,6 +4,8 @@ import { TownSelectorComponent } from './town-selector.component';
 import {provideRouter} from '@angular/router';
 import {provideHttpClient} from '@angular/common/http';
 import {provideHttpClientTesting} from '@angular/common/http/testing';
+import {provideStore} from '@ngxs/store';
+import {WeatherState} from '@stores/weather/weather.state';
 
 describe('TownSelectorComponent', () => {
   let component: TownSelectorComponent;
@@ -16,6 +18,7 @@ describe('TownSelectorComponent', () => {
         provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideStore([WeatherState])
       ]
     })
     .compileComponents();
