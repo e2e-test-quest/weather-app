@@ -68,16 +68,14 @@ npm install
 Voir [Kata E2E UUV](https://github.com/e2e-test-quest/kata-e2e-uuv/)
 
 ### D - Tests Store : NGXS Store
-![NGXS Store](https://www.gitbook.com/cdn-cgi/image/width=40,height=40,fit=contain,dpr=1.25,format=auto/https%3A%2F%2F490253082-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-L9CoGJCq3UCfKJ7RCUg%252Favatar.png%3Fgeneration%3D1522797881064033%26alt%3Dmedia)
-1. Créer dans le dossier `src/app/stores/weather` un fichier state `weather.state.ts` et un fichier d'actions `weather.action.ts`
-2. Migrer la Selection d'une ville `(TownSelectorComponent.onSelectTown(...)`) vers le store :
+L'objectif ici est de faire porter le mécanisme de sélection d'une ville par l'outil de gestion de store [NGXS Store](https://www.gitbook.com/cdn-cgi/image/width=40,height=40,fit=contain,dpr=1.25,format=auto/https%3A%2F%2F490253082-files.gitbook.io%2F~%2Ffiles%2Fv0%2Fb%2Fgitbook-legacy-files%2Fo%2Fspaces%252F-L9CoGJCq3UCfKJ7RCUg%252Favatar.png%3Fgeneration%3D1522797881064033%26alt%3Dmedia)
+1. Créer un store avec la commande suivante : 
+    ```shell
+    ng generate @ngxs/store:store --path stores --name weather
+    ```
+2. Migrer la Selection d'une ville vers le store :
    1. Ajouter la propriété `selectedTownWeather` dans le state `weather.state.ts` pour porter l'information de la ville sélectionnée
    2. Déclarer l'action de selection d'une ville `selectTown` dans le fichier `weather.action.ts`
    3. Implémenter l'action dans le fichier `weather.state.ts`
-   4. Mettre à jour les components `weather`, `weather-details`, `town-selector` pour utiliser le state `weather.state.ts`, l'action `selectTown` et le module `app-module`.
-   5. Rajouter les modifications nécessaire pour que les tests unitaires s'exécute sans erreur 
-3. Migrer la liste des Weather (`WeatherComponent.filteringTown(...)`) vers le store :
-   1. Enrichir le state `weather.state.ts` d'une propriété portant la liste des Weather
-   2. Rajouter dans le fichier `weather.action.ts`, une action prenant en paramètre un string pour filtrer la liste des Weather
-   3. Mettre à jour les components `weather`, `weather-details`, `town-selector` pour utiliser le state et l'action rajouté
-   4. Rajouter les modifications nécessaire pour que les tests unitaires s'exécute sans erreur
+   4. Rajouter les tests unitaires pour l'action `WeatherState.selectTown` dans le fichier `weather.state.spec.ts` et les modifications nécessaires pour que tous les tests unitaires s'exécutent sans erreur
+   5. Mettre à jour la configuration `app.config.ts` et les composants `weather` et `town-selector` pour utiliser le selecteur `WeatherState.getSelectedTownWeather` et l'action `WeatherState.selectTown`.

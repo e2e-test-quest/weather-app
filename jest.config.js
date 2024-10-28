@@ -27,7 +27,7 @@ module.exports = {
   coverageDirectory: '<rootDir>/coverage',
   moduleFileExtensions: ['ts', 'html', 'js', 'json'],
   transformIgnorePatterns: [
-    '<rootDir>/node_modules/(?!@angular|@ngrx|rxjs|@testing-library)'
+    '<rootDir>/node_modules/(?!@angular|@ngrx|rxjs|@testing-library|@ngxs/store)'
   ],
   moduleNameMapper: makeModuleNameMapper(ROOT_PATH, TS_CONFIG_PATH)
 };
