@@ -3,6 +3,8 @@ import {WeatherComponent} from './weather.component';
 import {HttpClient, provideHttpClient} from '@angular/common/http';
 import {provideHttpClientTesting} from '@angular/common/http/testing';
 import {provideRouter} from '@angular/router';
+import {provideStore} from '@ngxs/store';
+import {WeatherState} from '@stores/weather/weather.state';
 
 describe('WeatherComponent', () => {
   let component: WeatherComponent;
@@ -17,6 +19,7 @@ describe('WeatherComponent', () => {
         provideRouter([]),
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideStore([WeatherState])
       ]
     })
     .compileComponents();
