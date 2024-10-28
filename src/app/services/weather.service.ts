@@ -10,7 +10,7 @@ export class WeatherService {
 
   private httpClient = inject(HttpClient);
 
-  public getCurrentWeather(): Observable<Array<TownWeather>> {
-    return this.httpClient.get<Array<TownWeather>>('./data/mock.json');
+  public getCurrentWeather(): Observable<TownWeather[]> {
+    return this.httpClient.get<TownWeather[]>('./data/mock.json');
   }
 }

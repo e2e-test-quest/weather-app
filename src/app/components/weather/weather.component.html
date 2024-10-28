@@ -3,29 +3,32 @@
   <span>Trending: </span>
   <span class="text-primary">Not implemented yet !!! </span>
 </div>
-<div class="weather-view">
-  <p class="mb-2">First select a town or use the filter before</p>
-  <form class="mb-2" [formGroup]="townFilterForm" (ngSubmit)="onSubmitForm()">
-    <div class="row">
-      <div class="col-auto">
-        <input title="Search for a town" id="townTextSearch" formControlName="townTextSearch" type="text" class="form-control col-auto"
-               name="townTextSearch" data-testid="town-search">
-        <div class="invalid-feedback">Required field</div>
+@if (globalWeather$ | async) {
+  <div class="weather-view">
+    <p class="mb-2">First select a town or use the filter before</p>
+    <form class="mb-2" [formGroup]="townFilterForm" (ngSubmit)="onSubmitForm()">
+      <div class="row">
+        <div class="col-auto">
+          <input title="Search for a town" id="townTextSearch" formControlName="townTextSearch" type="text"
+                 class="form-control col-auto"
+                 name="townTextSearch" data-testid="town-search">
+          <div class="invalid-feedback">Required field</div>
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-secondary col-auto" data-testid="town-filter">
+            Filter
+          </button>
+        </div>
       </div>
-      <div class="col-auto">
-        <button type="submit" class="btn btn-secondary col-auto" data-testid="town-filter">
-          Filter
-        </button>
+    </form>
+    <div class="row justify-content-start gap-3 gap-md-0">
+      <div class="col-12 col-md-3">
+        <app-town-selector [globalWeather]="availableTownWeather()"
+                           (selectedTownEvent)="selectedTown($event)"></app-town-selector>
       </div>
-    </div>
-  </form>
-  <div class="row justify-content-start gap-3 gap-md-0">
-    <div class="col-12 col-md-3">
-      <app-town-selector [globalWeather]="globalWeather"
-                         (selectedTownEvent)="selectedTown($event)"></app-town-selector>
-    </div>
-    <div id="weather-details" class="col-12 col-md-9 p-4 border border-2 border-black">
-      <app-weather-details [currentTownWeather]="selectedTownWeather()"></app-weather-details>
+      <div id="weather-details" class="col-12 col-md-9 p-4 border border-2 border-black">
+        <app-weather-details [currentTownWeather]="selectedTownWeather()"></app-weather-details>
+      </div>
     </div>
   </div>
-</div>
+}

@@ -1,9 +1,14 @@
-import {Component, inject, OnInit, signal, WritableSignal} from '@angular/core';
+import {Component, computed, inject, OnInit, Signal, signal, WritableSignal} from '@angular/core';
 import {TownSelectorComponent} from '../town-selector/town-selector.component';
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import {TownWeather} from '@models/town-weather';
-import { WeatherService } from '@services/weather.service';
+import {WeatherService} from '@services/weather.service';
 import {WeatherDetailsComponent} from '@components/weather-details/weather-details.component';
+import {AsyncPipe} from '@angular/common';
+import {toSignal} from '@angular/core/rxjs-interop';
+import {Observable} from 'rxjs';
+
+const SEARCH_FIELD_FORM_ID = 'townTextSearch';
 
 @Component({
   selector: 'app-weather',
@@ -11,15 +16,19 @@ import {WeatherDetailsComponent} from '@components/weather-details/weather-detai
   imports: [
     TownSelectorComponent,
     WeatherDetailsComponent,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AsyncPipe
   ],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss'
 })
 export class WeatherComponent implements OnInit {
   public selectedTownWeather : WritableSignal<TownWeather | null> = signal(null);
-  public townFilterForm !: FormGroup;
-  public globalWeather !: Array<TownWeather>;
+  public globalWeather!: Signal<TownWeather[] | undefined>;
+  public townFilter: WritableSignal<string | null> = signal(null);
+  public availableTownWeather!: Signal<TownWeather[] | undefined>;
+  public globalWeather$?: Observable<TownWeather[]>;
+  public townFilterForm!: FormGroup;
   private weatherService = inject(WeatherService);
   private formBuilder = inject(FormBuilder);
 
@@ -27,10 +36,26 @@ export class WeatherComponent implements OnInit {
     this.townFilterForm = this.formBuilder.group({
       'townTextSearch' : new FormControl(null)
     });
+    this.globalWeather$ = this.weatherService.getCurrentWeather();
+    this.globalWeather = toSignal(this.globalWeather$);
   }
 
   ngOnInit(): void {
-    this.filteringTown(null);
+    this.availableTownWeather = computed(() => {
+      let globalWeather = this.globalWeather();
+      if (!globalWeather) {
+        return [];
+      }
+      const townFilterValue = this.townFilter();
+      if(townFilterValue !== null){
+        return globalWeather?.filter(
+          currentTownWeather => currentTownWeather.name && currentTownWeather.name.includes(townFilterValue)
+        )
+      } else {
+        return globalWeather;
+      }
+    });
+
   }
 
   public selectedTown($selectedTownWeather: TownWeather) {
@@ -38,25 +63,9 @@ export class WeatherComponent implements OnInit {
   }
 
   public onSubmitForm() {
-    const SEARCH_FIELD_FORM_ID = 'townTextSearch';
     this.selectedTownWeather.set(null);
     if (this.townFilterForm.valid && this.townFilterForm.get(SEARCH_FIELD_FORM_ID)) {
-      const townFilterValue = this.townFilterForm.get(SEARCH_FIELD_FORM_ID)?.value;
-      this.filteringTown(townFilterValue);
+      this.townFilter.set(this.townFilterForm.get(SEARCH_FIELD_FORM_ID)?.value);
     }
-  }
-
-  private filteringTown(townFilterValue: (string | null)) {
-    this.weatherService.getCurrentWeather().subscribe(
-      (response: Array<TownWeather>)=> {
-        if(townFilterValue){
-          this.globalWeather = response.filter(
-            currentTownWeather => currentTownWeather.name && currentTownWeather.name.includes(townFilterValue)
-          );
-        } else {
-          this.globalWeather = response;
-        }
-      }
-    );
   }
 }

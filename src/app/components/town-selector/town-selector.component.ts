@@ -13,7 +13,7 @@ import {RouterLink} from '@angular/router';
 })
 export class TownSelectorComponent {
   @Input({required: true})
-  public globalWeather !: Array<TownWeather>;
+  public globalWeather?: TownWeather[];
   public selectedTownWeather : WritableSignal<TownWeather | null> = signal(null);
   @Output()
   public selectedTownEvent = new EventEmitter<TownWeather>();
