@@ -7,6 +7,8 @@ import {WeatherDetailsComponent} from '@components/weather-details/weather-detai
 import {AsyncPipe} from '@angular/common';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {Observable} from 'rxjs';
+import {TrendingService} from '@services/trending.service';
+import {Trending} from '@models/trending';
 
 const SEARCH_FIELD_FORM_ID = 'townTextSearch';
 
@@ -26,10 +28,12 @@ export class WeatherComponent implements OnInit {
   public selectedTownWeather : WritableSignal<TownWeather | null> = signal(null);
   public globalWeather!: Signal<TownWeather[] | undefined>;
   public townFilter: WritableSignal<string | null> = signal(null);
-  public availableTownWeather!: Signal<TownWeather[] | undefined>;
+  public availableTownWeather!: Signal<TownWeather[]>;
+  public trending!: Signal<Trending | null>;
   public globalWeather$?: Observable<TownWeather[]>;
   public townFilterForm!: FormGroup;
   private weatherService = inject(WeatherService);
+  private trendingService = inject(TrendingService);
   private formBuilder = inject(FormBuilder);
 
   constructor() {
@@ -55,7 +59,9 @@ export class WeatherComponent implements OnInit {
         return globalWeather;
       }
     });
-
+    this.trending = computed(() => {
+      return this.trendingService.retrieveTrending(this.availableTownWeather())
+    });
   }
 
   public selectedTown($selectedTownWeather: TownWeather) {
