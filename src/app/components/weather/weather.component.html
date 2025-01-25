@@ -23,8 +23,7 @@
     </form>
     <div class="row justify-content-start gap-3 gap-md-0">
       <div class="col-12 col-md-3">
-        <app-town-selector [globalWeather]="availableTownWeather()"
-                           (selectedTownEvent)="selectedTown($event)"></app-town-selector>
+        <app-town-selector [globalWeather]="availableTownWeather()"></app-town-selector>
       </div>
       <div id="weather-details" class="col-12 col-md-9 p-4 border border-2 border-black">
         <app-weather-details [currentTownWeather]="selectedTownWeather()"></app-weather-details>

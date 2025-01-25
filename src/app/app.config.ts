@@ -3,12 +3,15 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import {provideHttpClient} from '@angular/common/http';
 import {provideStore} from '@ngxs/store';
+import {WeatherState} from '@stores/weather/weather.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(),
-    provideStore([])
+    provideStore([
+      WeatherState
+    ])
   ]
 };
