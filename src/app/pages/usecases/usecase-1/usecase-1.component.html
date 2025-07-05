@@ -1,0 +1,46 @@
+<h1 class="mb-5">Available buttons</h1>
+
+<div class="d-flex justify-content-around">
+  <button
+    data-testid="button1"
+    class="btn btn-secondary"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseExample"
+    aria-expanded="false"
+    aria-controls="collapseExample">Button 1</button>
+  <div
+    data-testid="button2"
+    class="btn btn-secondary"
+    data-bs-toggle="collapse"
+    data-bs-target="#collapseExample"
+    aria-expanded="false"
+    aria-controls="collapseExample">Button 2</div>
+</div>
+
+<div class="collapse" id="collapseExample">
+  <div class="card card-body m-5">
+    <h2 data-testid="hidden-section" class="mb-3">Hidden section</h2>
+    <div class="d-flex justify-content-around">
+      <div class="card" style="width: 18rem;" aria-label="Bloc Yphone">
+        <div class="d-flex justify-content-center bg-light">
+          <img src="/images/iphone.png" class="m-3" style="height: 14rem; width: auto" alt="Preview YPhone">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Yphone</h3>
+          <p class="card-text">An amazing Yphone</p>
+          <button class="btn btn-primary">Buy</button>
+        </div>
+      </div>
+      <div class="card" style="width: 18rem;" aria-label="Bloc Mydroid">
+        <div class="d-flex justify-content-center bg-light">
+          <img src="/images/android-phone.png" class="m-3" style="height: 14rem; width: auto" alt="Preview YPhone">
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">Mydroid</h3>
+          <p class="card-text">An amazing Mydroid</p>
+          <button class="btn btn-primary">Buy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -45,20 +45,20 @@
       <fieldset class="col-12 row mt-2">
         <legend class="required-field">Population</legend>
         <div class="col-md-4">
-          <input type="radio" id="small" name="population" value="small" checked />
+          <input class="me-1" type="radio" id="small" name="population" value="small" checked />
           <label for="small">Small (under 150000)</label>
         </div>
         <div class="col-md-4">
-          <input type="radio" id="medium" name="population" value="medium" />
+          <input class="me-1" type="radio" id="medium" name="population" value="medium" />
           <label for="medium">Medium (150000 to 1 million)</label>
         </div>
         <div class="col-md-4">
-          <input type="radio" id="large" name="population" value="large" />
+          <input class="me-1" type="radio" id="large" name="population" value="large" />
           <label for="large">Large (over 1 million)</label>
         </div>
       </fieldset>
       <div class="col-12">
-        <input type="checkbox" id="allow-automatique-update" name="allow-automatique-update" />
+        <input class="me-1" type="checkbox" id="allow-automatique-update" name="allow-automatique-update" />
         <label class="form-check-label ml-5" for="allow-automatique-update">Allow automatic update</label>
       </div>
       <div class="col-12 d-flex flex-row justify-content center gap-5">
@@ -68,6 +68,9 @@
         <button class="btn btn-primary d-flex align-items-center gap-1" type="submit" aria-label="Submit new town form"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" aria-hidden="true">
           <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
         </svg>Submit</button>
+        <button class="btn btn-secondary d-flex align-items-center gap-1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" aria-label="Submit new town form(with confirmation)"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-send" viewBox="0 0 16 16" aria-hidden="true">
+          <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11ZM6.636 10.07l2.761 4.338L14.13 2.576zm6.787-8.201L1.591 6.602l4.339 2.76 7.494-7.493Z"/>
+        </svg>Submit (with confirmation)</button>
       </div>
     </form>
   </div>
@@ -78,6 +81,25 @@
         <div class="toast-body" id="new-town-error">An error occurred please try again later</div>
         <button type="button" class="btn-close btn-close-white me-2 m-auto"
                 aria-label="Close" (click)="closeError($event)"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" data-bs-backdrop="static" data-bs-keyboard="false"  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Confirmation request</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure to submit ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
