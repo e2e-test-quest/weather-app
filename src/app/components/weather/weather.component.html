@@ -1,11 +1,13 @@
 <h1 class="display-2" data-testid="app-title">Current Weather</h1>
-<div class="display-5 weather-tending">
-  <span>Trending: </span>
-  <span class="text-primary">Not implemented yet !!! </span>
-</div>
 @if (globalWeather$ | async) {
+  <div class="display-5 weather-tending">
+    <span>Trending: </span>
+    @if (trending()) {
+      <a [href]="trending()?.url" class="link-offset-1 link-underline link-underline-opacity-10">{{trending()?.label}}</a>
+    }
+  </div>
   <div class="weather-view">
-    <p class="mb-2">First select a town or use the filter before</p>
+    <p class="my-2">First select a town or use the filter before</p>
     <form class="mb-2" [formGroup]="townFilterForm" (ngSubmit)="onSubmitForm()">
       <div class="row">
         <div class="col-auto">
