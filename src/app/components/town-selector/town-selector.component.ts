@@ -1,6 +1,9 @@
-import {Component, EventEmitter, Input, Output, signal, WritableSignal} from '@angular/core';
+import {Component, inject, Input, Signal} from '@angular/core';
 import {TownWeather} from '@models/town-weather';
 import {RouterLink} from '@angular/router';
+import {Store} from '@ngxs/store';
+import {WeatherState} from '@stores/weather/weather.state';
+import {SelectTown} from '@stores/weather/weather.actions';
 
 @Component({
   selector: 'app-town-selector',
@@ -14,12 +17,10 @@ import {RouterLink} from '@angular/router';
 export class TownSelectorComponent {
   @Input({required: true})
   public globalWeather?: TownWeather[];
-  public selectedTownWeather : WritableSignal<TownWeather | null> = signal(null);
-  @Output()
-  public selectedTownEvent = new EventEmitter<TownWeather>();
+  private store = inject(Store);
+  public selectedTownWeather : Signal<TownWeather | null> = this.store.selectSignal(WeatherState.getSelectedTownWeather);
 
   public onSelectTown(newSelectedTownWeather: TownWeather) {
-    this.selectedTownWeather.set(newSelectedTownWeather);
-    this.selectedTownEvent.emit(newSelectedTownWeather);
+    this.store.dispatch(new SelectTown(newSelectedTownWeather));
   }
 }
